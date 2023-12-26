@@ -41,7 +41,7 @@ Route::redirect('/log-in','login');
 
 Route::middleware(['auth'])->group(function(){
     Route::prefix('app')->group(function(){
-        Route::get('/dashboard',[App\Http\Controllers\DashboardController::class,'Single Action'])->name('dashboard');
+        Route::resource('/dashboard',[App\Http\Controllers\DashboardController::class])->name('dashboard');
         Route::rescource('/tasks',[App\Http\Controllers\TaskController::class]);
     });
 });
@@ -75,8 +75,8 @@ Route::middleware(['auth'])->group(function(){
     // Put one Route Group code line here below
 Route::middleware(['is_admin'])->group(function(){
     Route::prefix('admin')->group(function(){
-        Route::get('/dashboard',App\Http\Controllers\Admin\DashboardController::class,'Single Action');
-         Route::get('/stats',App\Http\Controllers\Admin\StatsController::class,'Single Action');
+        Route::resource('/dashboard',App\Http\Controllers\Admin\DashboardController::class);
+         Route::resource('/stats',App\Http\Controllers\Admin\StatsController::class);
     });
 });
 
